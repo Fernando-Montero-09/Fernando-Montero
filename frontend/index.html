@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎵 Catálogo de Música</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>🎵 Catálogo de Música</h1>
+    <p>Explora y agrega tus canciones favoritas</p>
+</header>
+
+<main>
+    <section class="formulario-container">
+        <h2>Agregar nueva canción</h2>
+        <form id="form-cancion">
+            <label for="titulo">Título</label>
+            <input type="text" id="titulo" name="titulo" required>
+
+            <label for="artista">Artista</label>
+            <input type="text" id="artista" name="artista" required>
+
+            <label for="genero">Género</label>
+            <input type="text" id="genero" name="genero" placeholder="Ej: Rock, Pop, Reggaetón">
+
+            <label for="anio">Año</label>
+            <input type="text" id="anio" name="anio" placeholder="Ej: 2024" maxlength="4">
+
+            <label for="imagen">Portada (imagen)</label>
+            <input type="file" id="imagen" name="imagen" accept="image/*">
+
+            <button type="submit">Agregar canción</button>
+            <p id="mensaje"></p>
+        </form>
+    </section>
+
+    <section class="lista-container">
+        <h2>Canciones</h2>
+        <div id="lista-canciones" class="grid-canciones">
+            <p>Cargando canciones...</p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>Proyecto de práctica — Frontend + Backend PHP + MySQL en Docker (puerto 2006)</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

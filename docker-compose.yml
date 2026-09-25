@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: musica_backend
+    restart: always
+    ports:
+      - "${APP_PORT}:80"
+    environment:
+      - DB_HOST=database
+      - DB_NAME=${MYSQL_DATABASE}
+      - DB_USER=${MYSQL_USER}
+      - DB_PASSWORD=${MYSQL_PASSWORD}
+    depends_on:
+      - database
+    networks:
+      - musica_network
+
+  database:
+    image: mysql:8.0
+    container_name: musica_db
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - musica_db_data:/var/lib/mysql
+    networks:
+      - musica_network
+
+volumes:
+  musica_db_data:
+
+networks:
+  musica_network:
+    driver: bridge
